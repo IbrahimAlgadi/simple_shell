@@ -62,11 +62,12 @@ void remove_newline(char *str) {
  */
 int main(int argc, char *argv[])
 {
-	int gt_line;
+	int TRUE, gt_line;
 	char *input;
 	char **arguments;
 
-	while (1) {
+	TRUE = 1;
+	while (TRUE) {
 
 		write(STDIN_FILENO, "$ ", 2);
 		input = read_user_input(&gt_line);
@@ -82,6 +83,8 @@ int main(int argc, char *argv[])
 			}
 		}
 
+		free(input);
+		free(arguments);
 	}
 }
 
