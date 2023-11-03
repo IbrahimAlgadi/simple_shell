@@ -23,7 +23,8 @@ int main(void)
 	{
 		printf("Wait for me, wait for me\n");
 		sleep(3);
-	} else
+	}
+	else
 	{
 		wait(&status);
 		printf("Oh, it's all better now\n");
