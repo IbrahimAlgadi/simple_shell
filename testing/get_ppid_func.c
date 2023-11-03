@@ -8,8 +8,8 @@
  */
 int main(void)
 {
-	pid_t parent_pid;
-	parent_pid = getppid();
-	printf("%u\n", parent_pid);
+	pid_t parent_ppid;
+	parent_ppid = getppid();
+	printf("PPID %u\n", parent_ppid);
 	return (0);
 }
