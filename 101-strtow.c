@@ -1,77 +1,48 @@
-#include <stdlib.h>
 #include "main.h"
 
 /**
- * count_word - helper function to count the number of words in a string
- * @s: string to evaluate
- *
- * Return: number of words
- */
-int count_word(char *s)
-{
-	int flag, c, w;
-
-	flag = 0;
-	w = 0;
-
-	for (c = 0; s[c] != '\0'; c++)
-	{
-		if (s[c] == ' ')
-			flag = 0;
-		else if (flag == 0)
-		{
-			flag = 1;
-			w++;
-		}
-	}
-
-	return (w);
-}
-/**
- * **strtow - splits a string into words
- * @str: string to split
- *
- * Return: pointer to an array of strings (Success)
- * or NULL (Error)
- */
+* strtow - splits a string into words.
+* @str: pointer to string to be splitted
+* Return:  a pointer to the string, or NULL if it fails.
+*/
 char **strtow(char *str)
 {
-	char **matrix, *tmp;
-	int i, k = 0, len = 0, words, c = 0, start, end;
+	int wc = 0, i = 0, j = 0, k, wlen;
+	char **newStr, *temp;
 
-	while (*(str + len))
-		len++;
-	words = count_word(str);
-	if (words == 0)
+	if (str == NULL || !*str)
 		return (NULL);
-
-	matrix = (char **) malloc(sizeof(char *) * (words + 1));
-	if (matrix == NULL)
-		return (NULL);
-
-	for (i = 0; i <= len; i++)
+	while (*(str + i))
 	{
-		if (str[i] == ' ' || str[i] == '\0')
+		if (*(str + i) != ' ')
+			if (*(str + i + 1) == ' ' || *(str + i + 1) == '\0')
+				wc++;
+		++i; }
+	if (wc == 0)
+		return (NULL);
+	newStr = malloc(++wc  * sizeof(char *));
+	if (newStr == NULL)
+		return (NULL);
+	while (*str)
+	{
+		while (*str == ' ' && *str)
+			++str;
+		wlen = 0;
+		while (*(str + wlen) != ' ' && *(str + wlen))
+			++wlen;
+		temp = malloc((wlen + 1) * sizeof(char));
+		if (temp == NULL)
 		{
-			if (c)
-			{
-				end = i;
-				tmp = (char *) malloc(sizeof(char) * (c + 1));
-				if (tmp == NULL)
-					return (NULL);
-				while (start < end)
-					*tmp++ = str[start++];
-				*tmp = '\0';
-				matrix[k] = tmp - c;
-				k++;
-				c = 0;
-			}
-		}
-		else if (c++ == 0)
-			start = i;
-	}
-
-	matrix[k] = NULL;
-
-	return (matrix);
+			for (; j - 1 >= 0; j--)
+				free(newStr[j]);
+			free(newStr);
+			return (NULL); }
+		for (k = 0; k < wlen; ++k)
+			*(temp + k) = *str++;
+		*(temp + k) = '\0';
+		*(newStr + j) = temp;
+		if (j < wc - 1)
+			j++; }
+	*(newStr + j) = NULL;
+	return (newStr);
 }
