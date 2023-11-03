@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
 
 /**
  * read_line - reads the input string.
@@ -28,6 +26,7 @@ int main(int argc, char *argv[])
 {
 	int gt_line;
 	char *input;
+	char** argv;
 
 	while (1) {
 
@@ -37,6 +36,11 @@ int main(int argc, char *argv[])
 		if (gt_line != -1)
 		{
 			printf("%s", input);
+			argv = strtow(input);
+			if (execve(argv[0], argv, NULL) == -1)
+			{
+				perror("Error:");
+			}
 		}
 
 	}
