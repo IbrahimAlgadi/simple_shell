@@ -15,6 +15,7 @@ int main(void)
 	pid = fork();
 	if (pid == -1)
 	{
+		/* perror - print a system error message */
 		perror("Error:");
 		return (1);
 	}
