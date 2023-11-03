@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 {
 	int gt_line;
 	char *input;
-	char** argv;
+	char **arguments;
 
 	while (1) {
 
@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 		if (gt_line != -1)
 		{
 			printf("%s", input);
-			argv = strtow(input);
-			if (execve(argv[0], argv, NULL) == -1)
+			arguments = strtow(input);
+			if (execve(arguments[0], arguments, NULL) == -1)
 			{
 				perror("Error:");
 			}
