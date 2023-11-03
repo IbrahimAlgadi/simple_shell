@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
 	while (1) {
 
-		write(STDIN_FILENO, "$ ", 4);
+		write(STDIN_FILENO, "$ ", 2);
 		input = read_user_input(&gt_line);
 
 		if (gt_line != -1)
