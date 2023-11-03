@@ -53,7 +53,7 @@ void remove_newline(char *str)
 		if (str[i] == '\n')
 		{
 			str[i] = '\0';
-			break; // Assuming there's only one newline, so we stop after the first occurrence
+			break;
 		}
 	}
 }
@@ -61,7 +61,7 @@ void remove_newline(char *str)
 
 void execute_command(char **command_and_arguments)
 {
-	pid_t child_pid = fork();  // Fork a child process
+	pid_t child_pid = fork();
 
 	if (child_pid == -1)
 	{
@@ -73,19 +73,28 @@ void execute_command(char **command_and_arguments)
 		if (execve(command_and_arguments[0], command_and_arguments, NULL) == -1)
 		{
 			perror("Error");
-			exit(EXIT_FAILURE);  // If exec fails, exit child process
+			/* If exec fails, exit child process */
+			exit(EXIT_FAILURE);
 		}
 	} else
 	{
-		// Parent process waits for the child to finish
+		/* Parent process waits for the child to finish */
 		wait(NULL);
 	}
 }
 
 
+/**
+ * free_arguments - Free Allocated Memory Arguments
+ *
+ * @arguments: the memory allocated for input string
+ * passed by the shell user
+ *
+ * Return: Always 0
+ */
 void free_arguments(char **arguments)
 {
-	// Free the memory allocated for arguments
+	/* Free the memory allocated for arguments */
 	if (arguments != NULL)
 	{
 		for (int i = 0; arguments[i] != NULL; i++)
