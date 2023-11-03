@@ -44,14 +44,55 @@ int _strlen(char *s)
  *
  * Return: Noting
  */
-void remove_newline(char *str) {
+void remove_newline(char *str)
+{
 	int length = _strlen(str);
 
-	for (int i = 0; i < length; i++) {
-		if (str[i] == '\n') {
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] == '\n')
+		{
 			str[i] = '\0';
 			break; // Assuming there's only one newline, so we stop after the first occurrence
 		}
+	}
+}
+
+
+void execute_command(char **command_and_arguments)
+{
+	pid_t child_pid = fork();  // Fork a child process
+
+	if (child_pid == -1)
+	{
+		perror("Fork failed");
+		exit(EXIT_FAILURE);
+	} else if (child_pid == 0)
+	{
+		// Child process
+		if (execve(arguments[0], arguments, NULL) == -1)
+		{
+			perror("Error");
+			exit(EXIT_FAILURE);  // If exec fails, exit child process
+		}
+	} else
+	{
+		// Parent process waits for the child to finish
+		wait(NULL);
+	}
+}
+
+
+void free_arguments(char **arguments)
+{
+	// Free the memory allocated for arguments
+	if (arguments != NULL)
+	{
+		for (int i = 0; arguments[i] != NULL; i++)
+		{
+			free(arguments[i]);
+		}
+		free(arguments);
 	}
 }
 
@@ -62,29 +103,28 @@ void remove_newline(char *str) {
  */
 int main(int argc, char *argv[])
 {
-	int TRUE, gt_line;
+	int TRUE;
+	int gt_line;
 	char *input;
 	char **arguments;
 
 	TRUE = 1;
-	while (TRUE) {
-
+	while (TRUE)
+	{
 		write(STDIN_FILENO, "$ ", 2);
 		input = read_user_input(&gt_line);
 
 		if (gt_line != -1)
 		{
-			printf("%s", input);
 			remove_newline(input);
 			arguments = strtow(input);
-			if (execve(arguments[0], arguments, NULL) == -1)
-			{
-				perror("Error:");
-			}
+			execute_command(arguments);
 		}
 
 		free(input);
-		free(arguments);
+		/* Free the memory allocated for arguments */
+		free_arguments(arguments);
 	}
+	return 0;
 }
 
