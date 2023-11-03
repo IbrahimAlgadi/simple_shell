@@ -18,6 +18,24 @@ char *read_user_input(int *gt_line)
 
 
 /**
+ * remove_newline - removes \n from string
+ *
+ * @str: string
+ *
+ * Return: Noting
+ */
+void remove_newline(char *str) {
+	int length = strlen(str);
+
+	for (int i = 0; i < length; i++) {
+		if (str[i] == '\n') {
+			str[i] = '\0';
+			break; // Assuming there's only one newline, so we stop after the first occurrence
+		}
+	}
+}
+
+/**
  * main - Simple Shell
  *
  * Return: Always 0
@@ -36,6 +54,7 @@ int main(int argc, char *argv[])
 		if (gt_line != -1)
 		{
 			printf("%s", input);
+			remove_newline(input);
 			arguments = strtow(input);
 			if (execve(arguments[0], arguments, NULL) == -1)
 			{
