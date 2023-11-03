@@ -70,7 +70,7 @@ void execute_command(char **command_and_arguments)
 	} else if (child_pid == 0)
 	{
 		// Child process
-		if (execve(arguments[0], arguments, NULL) == -1)
+		if (execve(command_and_arguments[0], command_and_arguments, NULL) == -1)
 		{
 			perror("Error");
 			exit(EXIT_FAILURE);  // If exec fails, exit child process
