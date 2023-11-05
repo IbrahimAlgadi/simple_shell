@@ -211,7 +211,7 @@ char *_find_command(char *cmd)
 	fprintf(stdout,"path_length: %d\n", path_length);
 	while (selected_path != NULL)
 	{
-		fprintf(stdout,"selected_path: %s", selected_path);
+		fprintf(stdout,"selected_path: %s\n", selected_path);
 		path_length = _strlen(selected_path);
 		command_dir = malloc(path_length + command_length + 2);
 		/* copy selected path to the allocated memory */
