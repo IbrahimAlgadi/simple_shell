@@ -205,10 +205,10 @@ char *_find_command(char *cmd)
 	fprintf(stdout, "path: %s\n", path);
 
 	command_length = _strlen(cmd);
-	fprintf(stdout,"command_length: %d", command_length);
+	fprintf(stdout,"command_length: %d\n", command_length);
 	selected_path = strtok(path, ":");
 	path_length = _strlen(selected_path);
-	fprintf(stdout,"path_length: %d", path_length);
+	fprintf(stdout,"path_length: %d\n", path_length);
 	while (selected_path != NULL)
 	{
 		fprintf(stdout,"selected_path: %s", selected_path);
@@ -231,7 +231,7 @@ char *_find_command(char *cmd)
 		free(command_dir);
 		selected_path = strtok(NULL, ":");
 	}
-	fprintf(stdout,"selected_path: %s", selected_path);
+	fprintf(stdout,"selected_path: %s\n", selected_path);
 	free(path);
 	if (stat(cmd, &file_stats) == 0)
 		return (cmd);
