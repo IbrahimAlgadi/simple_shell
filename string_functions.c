@@ -34,12 +34,12 @@ char *_strchr(const char *str, int character)
 	{
 		if (*str == character)
 		{
-			return (char *) str;
+			return ((char *) str);
 		}
 		str++;
 	}
 
-	return NULL;
+	return (NULL);
 }
 
 /**

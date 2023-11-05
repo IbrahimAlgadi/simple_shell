@@ -8,7 +8,7 @@
  *
  * Return: Always 0
  */
-int main(int argc, char *argv[], char **env)
+int main(int argc, char *argv[])
 {
 	int TRUE;
 	int gt_line;
@@ -25,7 +25,7 @@ int main(int argc, char *argv[], char **env)
 		{
 			remove_newline(input);
 			arguments = strtow(input);
-			execute_command(arguments, env);
+			execute_command(arguments);
 		}
 
 		free(input);

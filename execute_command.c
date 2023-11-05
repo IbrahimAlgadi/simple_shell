@@ -2,130 +2,12 @@
 
 
 /**
- * _strcat - concatenate two strings
- * @dest: char pointer the dest of the copied str
- * @src: const char pointer the source of str
- * Return: the dest
- */
-char *_strcat(char *dest, const char *src)
-{
-	int i;
-	int j;
-
-	for (i = 0; dest[i] != '\0'; i++);
-
-	for (j = 0; src[j] != '\0'; j++)
-	{
-		dest[i] = src[j];
-		i++;
-	}
-
-	dest[i] = '\0';
-	return (dest);
-}
-
-/**
- * *_strcpy - Copies the string pointed to by src.
- * @dest: Type char pointer the dest of the copied str
- * @src: Type char pointer the source of str
- * Return: the dest.
- */
-char *_strcpy(char *dest, char *src)
-{
-
-	size_t a;
-
-	for (a = 0; src[a] != '\0'; a++)
-	{
-		dest[a] = src[a];
-	}
-	dest[a] = '\0';
-
-	return (dest);
-}
-
-/**
- * _strcmp - Function that compares two strings.
- * @s1: type str compared
- * @s2: type str compared
- * Return: Always 0.
- */
-int _strcmp(char *s1, char *s2)
-{
-	int i;
-
-	for (i = 0; s1[i] == s2[i] && s1[i]; i++);
-
-	if (s1[i] > s2[i])
-		return (1);
-	if (s1[i] < s2[i])
-		return (-1);
-	return (0);
-}
-
-int _strncmp(const char *str1, const char *str2, size_t n)
-{
-	size_t i;
-	for (i = 0; i < n && str1[i] != '\0' && str2[i] != '\0'; i++)
-	{
-		if (str1[i] != str2[i])
-		{
-			return str1[i] - str2[i];
-		}
-	}
-
-	if (i == n)
-	{
-		return 0; // Both strings are equal up to n characters
-	} else if (str1[i] != '\0')
-	{
-		return 1; // str1 is longer
-	} else if (str2[i] != '\0')
-	{
-		return -1; // str2 is longer
-	}
-
-	return 0;
-}
-
-size_t cs_strlen(const char *str)
-{
-	size_t length = 0;
-	while (str[length] != '\0')
-	{
-		length++;
-	}
-	return length;
-}
-
-char *_getenv(const char *var)
-{
-	extern char **environ;
-
-	if (var == NULL || environ == NULL)
-	{
-		return NULL;
-	}
-
-	int i = 0;
-	while (environ[i] != NULL)
-	{
-		if (_strncmp(environ[i], var, cs_strlen(var)) == 0 && environ[i][cs_strlen(var)] == '=')
-		{
-			return environ[i] + cs_strlen(var) + 1;
-		}
-		i++;
-	}
-
-	return NULL;
-}
-
-/**
- * _which - locates a command
+ * _find_command - locates a command
  *
  * @cmd: command name
+ * @environ: environment variables
  *
- * Return: location of the command.
+ * Return: location of the command or the command.
  */
 char *_find_command(char *cmd)
 {
@@ -160,6 +42,7 @@ char *_find_command(char *cmd)
 			selected_path = strtok(NULL, ":");
 		}
 	}
+
 	return (cmd);
 
 }
@@ -170,11 +53,12 @@ char *_find_command(char *cmd)
  *
  * @command_and_arguments: the memory allocated for input string
  * passed by the shell user contain the command and the arguments
- * of the command
+ * of the command.
+ * @env: environment variable values
  *
  * Return: Always 0
  */
-void execute_command(char **command_and_arguments, char **env)
+void execute_command(char **command_and_arguments)
 {
 	pid_t child_pid = fork();
 
@@ -185,11 +69,13 @@ void execute_command(char **command_and_arguments, char **env)
 	} else if (child_pid == 0)
 	{
 		/* Child process */
-		/* if command is sent with the
+		/*
+		 * if command is sent with the
 		 * path attached to it just execute it
 		 * else search for the command path if found
-		 * */
-		if (execve(_find_command(command_and_arguments[0]), command_and_arguments, env) == -1)
+		 */
+		if (execve(
+			_find_command(command_and_arguments[0]), command_and_arguments, environ) == -1)
 		{
 			perror("Error");
 			/* If exec fails, exit child process */
