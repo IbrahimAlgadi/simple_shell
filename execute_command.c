@@ -226,6 +226,7 @@ char *_find_command(char *cmd)
 		if (stat(command_dir, &file_stats) == 0)
 		{
 			free(path);
+			fprintf(stdout,"found command: %s\n", command_dir);
 			return (command_dir);
 		}
 		free(command_dir);
