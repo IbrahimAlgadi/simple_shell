@@ -263,24 +263,12 @@ void execute_command(char **command_and_arguments, char **env)
 		 * path attached to it just execute it
 		 * else search for the command path if found
 		 * */
-		if (_strchr(command_and_arguments[0], '/') != NULL)
+		printf("%s", _find_command(command_and_arguments[0]));
+		if (execve(_find_command(command_and_arguments[0]), command_and_arguments, env) == -1)
 		{
-			if (execve(command_and_arguments[0], command_and_arguments, env) == -1)
-			{
-				perror("Error");
-				/* If exec fails, exit child process */
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			printf("%s", _find_command(command_and_arguments[0]));
-			if (execve(_find_command(command_and_arguments[0]), command_and_arguments, env) == -1)
-			{
-				perror("Error");
-				/* If exec fails, exit child process */
-				exit(EXIT_FAILURE);
-			}
+			perror("Error");
+			/* If exec fails, exit child process */
+			exit(EXIT_FAILURE);
 		}
 	} else
 	{
