@@ -13,7 +13,8 @@ char *_strcat(char *dest, const char *src)
 	int i;
 	int j;
 
-	for (i = 0; dest[i] != '\0'; i++);
+	for (i = 0; dest[i] != '\0'; i++)
+		;
 
 	for (j = 0; src[j] != '\0'; j++)
 	{
@@ -59,7 +60,8 @@ int _strcmp(char *s1, char *s2)
 {
 	int i;
 
-	for (i = 0; s1[i] == s2[i] && s1[i]; i++);
+	for (i = 0; s1[i] == s2[i] && s1[i]; i++)
+		;
 
 	if (s1[i] > s2[i])
 		return (1);
@@ -74,34 +76,36 @@ int _strcmp(char *s1, char *s2)
  * equal to, or greater than zero if str1 is found, respectively,
  * to be less than, equal to, or greater than str2.
  *
- * @s1: type str compared
- * @s2: type str compared
+ * @str1: str1
+ * @str2: str2
+ * @n: n
  *
  * Return: comp result.
  */
 int _strncmp(const char *str1, const char *str2, size_t n)
 {
 	size_t i;
+
 	for (i = 0; i < n && str1[i] != '\0' && str2[i] != '\0'; i++)
 	{
 		if (str1[i] != str2[i])
 		{
-			return str1[i] - str2[i];
+			return (str1[i] - str2[i]);
 		}
 	}
 
 	if (i == n)
 	{
-		return 0; // Both strings are equal up to n characters
+		return (0);
 	} else if (str1[i] != '\0')
 	{
-		return 1; // str1 is longer
+		return (1);
 	} else if (str2[i] != '\0')
 	{
-		return -1; // str2 is longer
+		return (-1);
 	}
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -114,9 +118,10 @@ int _strncmp(const char *str1, const char *str2, size_t n)
 size_t cs_strlen(const char *str)
 {
 	size_t length = 0;
+
 	while (str[length] != '\0')
 	{
 		length++;
 	}
-	return length;
+	return (length);
 }

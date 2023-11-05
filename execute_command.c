@@ -5,7 +5,6 @@
  * _find_command - locates a command
  *
  * @cmd: command name
- * @environ: environment variables
  *
  * Return: location of the command or the command.
  */
@@ -54,7 +53,6 @@ char *_find_command(char *cmd)
  * @command_and_arguments: the memory allocated for input string
  * passed by the shell user contain the command and the arguments
  * of the command.
- * @env: environment variable values
  *
  * Return: Always 0
  */
@@ -75,7 +73,10 @@ void execute_command(char **command_and_arguments)
 		 * else search for the command path if found
 		 */
 		if (execve(
-			_find_command(command_and_arguments[0]), command_and_arguments, environ) == -1)
+			_find_command(
+				command_and_arguments[0]),
+				command_and_arguments,
+				environ) == -1)
 		{
 			perror("Error");
 			/* If exec fails, exit child process */
