@@ -160,7 +160,7 @@ char *_find_command(char *cmd)
 			selected_path = strtok(NULL, ":");
 		}
 	}
-	return (NULL);
+	return (cmd);
 
 }
 
