@@ -25,8 +25,15 @@ int main(int argc, char *argv[])
 		{
 			remove_newline(input);
 
-			if (_strcmp(input, "exit") == 0) {
+			if (_strcmp(input, "exit") == 0)
+			{
 				break;
+			}
+
+			if (_strcmp(input, "env") == 0)
+			{
+				_print_env();
+				continue;
 			}
 
 			arguments = strtow(input);

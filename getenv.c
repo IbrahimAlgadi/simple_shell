@@ -32,3 +32,22 @@ char *_getenv(const char *var)
 
 	return (NULL);
 }
+
+
+/**
+ * _print_env - prints the evironment variables
+ *
+ * Return: 1 on success.
+ */
+void _print_env(void)
+{
+	int i;
+
+	for (i = 0; environ[i]; i++)
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+	}
+
+	return (1);
+}

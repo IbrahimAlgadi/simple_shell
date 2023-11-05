@@ -20,6 +20,7 @@ char *_find_command(char *cmd);
 void execute_command(char **command_and_arguments);
 /* environment variables */
 char *_getenv(const char *var);
+void _print_env(void);
 /* String manipulation functions */
 char **strtow(char *str);
 int _strlen(char *s);
