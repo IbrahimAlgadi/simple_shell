@@ -199,7 +199,6 @@ char *_find_command(char *cmd)
 {
 	char *path, *selected_path, *command_dir;
 	int path_length, command_length;
-	struct stat file_stats;
 
 	path = _getenv("PATH");
 	fprintf(stdout, "path: %s\n", path);
@@ -223,7 +222,9 @@ char *_find_command(char *cmd)
 		/* end the string of the allocated memory */
 		_strcat(command_dir, "\0");
 		/* search if the command file exists in the path */
-		if (stat(command_dir, &file_stats) == 0)
+		fprintf(stdout,"found command: %d\n", access(command_dir, X_OK));
+
+		if (access(command_dir, X_OK) != -1)
 		{
 			free(path);
 			fprintf(stdout,"found command: %s\n", command_dir);
@@ -234,8 +235,6 @@ char *_find_command(char *cmd)
 	}
 	fprintf(stdout,"selected_path: %s\n", selected_path);
 	free(path);
-	if (stat(cmd, &file_stats) == 0)
-		return (cmd);
 	return (NULL);
 
 }
