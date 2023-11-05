@@ -31,5 +31,7 @@ char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *str1, const char *str2, size_t n);
 size_t cs_strlen(const char *str);
+char *_strpbrk(const char *str, const char *chars);
+char *_strtok(char *str, const char *delim);
 
 #endif
