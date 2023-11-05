@@ -11,7 +11,7 @@ char *read_user_input(int *gt_line);
 /* Memory handling functions */
 void free_arguments(char **arguments);
 /* command execution functions */
-void execute_command(char **command_and_arguments);
+void execute_command(char **command_and_arguments, char **env);
 /* String manipulation functions */
 char **strtow(char *str);
 int _strlen(char *s);
