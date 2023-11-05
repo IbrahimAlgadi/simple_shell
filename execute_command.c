@@ -202,7 +202,7 @@ char *_find_command(char *cmd)
 	struct stat file_stats;
 
 	path = _getenv("PATH");
-	fprintf(stdout, "%s\n", path);
+	/* fprintf(stdout, "%s\n", path); */
 
 	if (path)
 	{
@@ -210,7 +210,7 @@ char *_find_command(char *cmd)
 		selected_path = _strtok(path, ":");
 		while (selected_path != NULL)
 		{
-			printf("selected_path: %s", selected_path);
+			fprintf(stdout,"selected_path: %s", selected_path);
 			path_length = _strlen(selected_path);
 			command_dir = malloc(path_length + command_length + 2);
 			/* copy selected path to the allocated memory */
