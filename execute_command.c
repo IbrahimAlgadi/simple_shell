@@ -73,10 +73,10 @@ void execute_command(char **command_and_arguments)
 		 * else search for the command path if found
 		 */
 		if (execve(
-			_find_command(
-				command_and_arguments[0]),
-				command_and_arguments,
-				environ) == -1)
+			_find_command(command_and_arguments[0]),
+			command_and_arguments,
+			environ
+		) == -1)
 		{
 			perror("Error");
 			/* If exec fails, exit child process */

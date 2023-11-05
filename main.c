@@ -24,6 +24,11 @@ int main(int argc, char *argv[])
 		if (gt_line != -1)
 		{
 			remove_newline(input);
+
+			if (_strcmp(input, &'exit')) {
+				break;
+			}
+
 			arguments = strtow(input);
 			execute_command(arguments);
 		}
