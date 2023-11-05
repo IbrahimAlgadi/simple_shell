@@ -18,7 +18,7 @@ char *_find_command(char *cmd)
 	if (path != NULL)
 	{
 		command_length = _strlen(cmd);
-		selected_path = _strtok(path, ":");
+		selected_path = strtok(path, ":");
 		path_length = _strlen(selected_path);
 		while (selected_path != NULL)
 		{
@@ -38,7 +38,7 @@ char *_find_command(char *cmd)
 				return (command_dir);
 			}
 			free(command_dir);
-			selected_path = _strtok(NULL, ":");
+			selected_path = strtok(NULL, ":");
 		}
 	}
 
