@@ -228,8 +228,9 @@ char *_find_command(char *cmd)
 				return (command_dir);
 			}
 			free(command_dir);
-			selected_path = _strtok(NULL, ":");
+			selected_path = strtok(NULL, ":");
 		}
+		fprintf(stdout,"selected_path: %s", selected_path);
 		free(path);
 		if (stat(cmd, &file_stats) == 0)
 			return (cmd);
