@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <wait.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /* User input handling functions */
 char *read_user_input(int *gt_line);
