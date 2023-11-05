@@ -10,7 +10,7 @@
  *
  * Return: Always 0
  */
-void execute_command(char **command_and_arguments)
+void execute_command(char **command_and_arguments, char **env)
 {
 	pid_t child_pid = fork();
 
@@ -21,7 +21,7 @@ void execute_command(char **command_and_arguments)
 	} else if (child_pid == 0)
 	{
 		/* Child process */
-		if (execve(command_and_arguments[0], command_and_arguments, NULL) == -1)
+		if (execve(command_and_arguments[0], command_and_arguments, env) == -1)
 		{
 			perror("Error");
 			/* If exec fails, exit child process */
