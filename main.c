@@ -25,7 +25,7 @@ int main(int argc, char *argv[], char **env)
 		{
 			remove_newline(input);
 			arguments = strtow(input);
-			execute_command(arguments);
+			execute_command(arguments, env);
 		}
 
 		free(input);
