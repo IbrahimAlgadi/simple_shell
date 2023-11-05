@@ -202,9 +202,10 @@ char *_find_command(char *cmd)
 	struct stat file_stats;
 
 	path = _getenv("PATH");
-	fprintf(stdout, "%s\n", path);
+	fprintf(stdout, "path: %s\n", path);
 
 	command_length = _strlen(cmd);
+	fprintf(stdout,"command_length: %d", command_length);
 	selected_path = strtok(path, ":");
 	path_length = _strlen(selected_path);
 	fprintf(stdout,"path_length: %d", path_length);
