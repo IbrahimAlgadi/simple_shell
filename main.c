@@ -11,12 +11,12 @@
 int main(int argc, char *argv[])
 {
 	/* To suppress the warning for unused parameters */
-	(void)argc;
-	(void)argv;
 	int gt_line;
 	char *input;
 	char **arguments;
 	int true = 1;
+	(void)argc;
+	(void)argv;
 
 	while (true)
 	{
