@@ -197,7 +197,7 @@ char *_strtok(char str[], const char *delim)
  */
 char *_find_command(char *cmd, char **_environ)
 {
-	char *path, *ptr_path, *selected_path, *dir;
+	char *path, *ptr_path, *selected_path, *command_dir;
 	int path_length, command_length, i;
 	struct stat file_stats;
 
