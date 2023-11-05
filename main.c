@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 		{
 			remove_newline(input);
 
-			if (_strcmp(input, "exit")) {
+			if (_strcmp(input, "exit") == 0) {
 				break;
 			}
 
