@@ -192,10 +192,10 @@ char *_strtok(char str[], const char *delim)
  * _which - locates a command
  *
  * @cmd: command name
- * @_environ: environment variable
+ *
  * Return: location of the command.
  */
-char *_find_command(char *cmd, char **_environ)
+char *_find_command(char *cmd)
 {
 	char *path, *ptr_path, *selected_path, *command_dir;
 	int path_length, command_length, i;
