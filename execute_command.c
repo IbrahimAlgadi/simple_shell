@@ -274,6 +274,7 @@ void execute_command(char **command_and_arguments, char **env)
 		}
 		else
 		{
+			printf("%s", _find_command(command_and_arguments[0]));
 			if (execve(_find_command(command_and_arguments[0]), command_and_arguments, env) == -1)
 			{
 				perror("Error");
