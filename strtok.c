@@ -26,7 +26,7 @@ char *_strpbrk(const char *str, const char *chars)
 			}
 		}
 	}
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -42,15 +42,16 @@ char *_strpbrk(const char *str, const char *chars)
 char *_strtok(char *str, const char *delim)
 {
 	static char *token;
+	char *start = token;
+
 	if (str != NULL)
 	{
 		token = str;
 	} else if (token == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
-	char *start = token;
 	token = _strpbrk(start, delim);
 
 	if (token != NULL)
@@ -62,5 +63,5 @@ char *_strtok(char *str, const char *delim)
 		token = NULL;
 	}
 
-	return start;
+	return (start);
 }
