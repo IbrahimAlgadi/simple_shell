@@ -227,14 +227,12 @@ char *_find_command(char *cmd)
 		if (access(command_dir, X_OK) != -1)
 		{
 			fprintf(stdout,"found command: %s\n", command_dir);
-			free(path);
 			return (command_dir);
 		}
 		free(command_dir);
 		selected_path = strtok(NULL, ":");
 	}
 	fprintf(stdout,"selected_path: %s\n", selected_path);
-	free(path);
 	return (NULL);
 
 }
