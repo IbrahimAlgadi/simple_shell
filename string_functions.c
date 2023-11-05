@@ -51,9 +51,10 @@ char *_strchr(const char *str, int character)
  */
 void remove_newline(char *str)
 {
+	int i;
 	int length = _strlen(str);
 
-	for (int i = 0; i < length; i++)
+	for (i = 0; i < length; i++)
 	{
 		if (str[i] == '\n')
 		{

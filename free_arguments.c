@@ -10,10 +10,12 @@
  */
 void free_arguments(char **arguments)
 {
+	int i;
+
 	/* Free the memory allocated for arguments */
 	if (arguments != NULL)
 	{
-		for (int i = 0; arguments[i] != NULL; i++)
+		for (i = 0; arguments[i] != NULL; i++)
 		{
 			free(arguments[i]);
 		}
