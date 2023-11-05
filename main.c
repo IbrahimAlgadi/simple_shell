@@ -13,13 +13,12 @@ int main(int argc, char *argv[])
 	/* To suppress the warning for unused parameters */
 	(void)argc;
 	(void)argv;
-	int TRUE;
 	int gt_line;
 	char *input;
 	char **arguments;
+	int true = 1;
 
-	TRUE = 1;
-	while (TRUE)
+	while (true)
 	{
 		write(STDIN_FILENO, "$ ", 2);
 		input = read_user_input(&gt_line);
