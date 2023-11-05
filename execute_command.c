@@ -204,7 +204,7 @@ char *_find_command(char *cmd)
 	path = _getenv("PATH");
 	fprintf(stdout, "%s\n", path);
 
-	if (path)
+	if (path != NULL)
 	{
 		command_length = _strlen(cmd);
 		selected_path = strtok(path, ":");
