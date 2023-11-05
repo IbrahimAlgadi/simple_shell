@@ -18,6 +18,29 @@ int _strlen(char *s)
 	return (length);
 }
 
+/**
+ * _strchr - It searches for a specific character
+ * within a given string and returns a pointer to
+ * the first occurrence of the character.
+ *
+ * @str: string
+ * @character: character
+ *
+ * Return: Return NULL if not found
+ */
+char *_strchr(const char *str, int character)
+{
+	while (*str != '\0')
+	{
+		if (*str == character)
+		{
+			return (char *) str;
+		}
+		str++;
+	}
+
+	return NULL;
+}
 
 /**
  * remove_newline - removes \n from string

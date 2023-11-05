@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <wait.h>
+#include <string.h>
 
 /* User input handling functions */
 char *read_user_input(int *gt_line);
@@ -15,6 +16,8 @@ void execute_command(char **command_and_arguments, char **env);
 /* String manipulation functions */
 char **strtow(char *str);
 int _strlen(char *s);
+char *_strchr(const char *str, int character);
 void remove_newline(char *str);
+
 
 #endif
