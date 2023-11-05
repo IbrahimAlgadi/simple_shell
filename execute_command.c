@@ -222,12 +222,12 @@ char *_find_command(char *cmd)
 		/* end the string of the allocated memory */
 		_strcat(command_dir, "\0");
 		/* search if the command file exists in the path */
-		fprintf(stdout,"found command: %d\n", access(command_dir, X_OK));
+		fprintf(stdout,"using access: %d\n", access(command_dir, X_OK));
 
 		if (access(command_dir, X_OK) != -1)
 		{
-			free(path);
 			fprintf(stdout,"found command: %s\n", command_dir);
+			free(path);
 			return (command_dir);
 		}
 		free(command_dir);
