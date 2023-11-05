@@ -204,39 +204,36 @@ char *_find_command(char *cmd)
 	path = _getenv("PATH");
 	fprintf(stdout, "%s\n", path);
 
-	if (path != NULL)
+	command_length = _strlen(cmd);
+	selected_path = strtok(path, ":");
+	while (selected_path != NULL)
 	{
-		command_length = _strlen(cmd);
-		selected_path = strtok(path, ":");
-		while (selected_path != NULL)
-		{
-			fprintf(stdout,"selected_path: %s", selected_path);
-			path_length = _strlen(selected_path);
-			command_dir = malloc(path_length + command_length + 2);
-			/* copy selected path to the allocated memory */
-			_strcpy(command_dir, selected_path);
-			/* add / to the selected memory */
-			_strcat(command_dir, "/");
-			/* after slash add the passed command */
-			_strcat(command_dir, cmd);
-			/* end the string of the allocated memory */
-			_strcat(command_dir, "\0");
-			/* search if the command file exists in the path */
-			if (stat(command_dir, &file_stats) == 0)
-			{
-				free(path);
-				return (command_dir);
-			}
-			free(command_dir);
-			selected_path = strtok(NULL, ":");
-		}
 		fprintf(stdout,"selected_path: %s", selected_path);
-		free(path);
-		if (stat(cmd, &file_stats) == 0)
-			return (cmd);
-		return (NULL);
+		path_length = _strlen(selected_path);
+		command_dir = malloc(path_length + command_length + 2);
+		/* copy selected path to the allocated memory */
+		_strcpy(command_dir, selected_path);
+		/* add / to the selected memory */
+		_strcat(command_dir, "/");
+		/* after slash add the passed command */
+		_strcat(command_dir, cmd);
+		/* end the string of the allocated memory */
+		_strcat(command_dir, "\0");
+		/* search if the command file exists in the path */
+		if (stat(command_dir, &file_stats) == 0)
+		{
+			free(path);
+			return (command_dir);
+		}
+		free(command_dir);
+		selected_path = strtok(NULL, ":");
 	}
+	fprintf(stdout,"selected_path: %s", selected_path);
+	free(path);
+	if (stat(cmd, &file_stats) == 0)
+		return (cmd);
 	return (NULL);
+
 }
 
 
