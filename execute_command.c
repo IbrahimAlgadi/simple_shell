@@ -197,7 +197,7 @@ char *_strtok(char str[], const char *delim)
  */
 char *_find_command(char *cmd)
 {
-	char *path, *ptr_path, *selected_path, *command_dir;
+	char *path, *selected_path, *command_dir;
 	int path_length, command_length, i;
 	struct stat file_stats;
 
@@ -210,6 +210,7 @@ char *_find_command(char *cmd)
 		i = 0;
 		while (selected_path != NULL)
 		{
+			printf("selected_path: %s", selected_path);
 			path_length = _strlen(selected_path);
 			command_dir = malloc(path_length + command_length + 2);
 			/* copy selected path to the allocated memory */
