@@ -10,6 +10,9 @@
  */
 int main(int argc, char *argv[])
 {
+	/* To suppress the warning for unused parameters */
+	(void)argc;
+	(void)argv;
 	int TRUE;
 	int gt_line;
 	char *input;
