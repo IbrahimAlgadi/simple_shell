@@ -202,7 +202,7 @@ char *_find_command(char *cmd)
 	struct stat file_stats;
 
 	path = _getenv("PATH");
-	printf("path: %s", path);
+	fprintf(stdout, "%s\n", path);
 
 	if (path)
 	{
