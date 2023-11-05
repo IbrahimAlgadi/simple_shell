@@ -206,6 +206,8 @@ char *_find_command(char *cmd)
 
 	command_length = _strlen(cmd);
 	selected_path = strtok(path, ":");
+	path_length = _strlen(selected_path);
+	fprintf(stdout,"path_length: %d", path_length);
 	while (selected_path != NULL)
 	{
 		fprintf(stdout,"selected_path: %s", selected_path);
@@ -262,7 +264,6 @@ void execute_command(char **command_and_arguments, char **env)
 		 * path attached to it just execute it
 		 * else search for the command path if found
 		 * */
-		printf("%s", _find_command(command_and_arguments[0]));
 		if (execve(_find_command(command_and_arguments[0]), command_and_arguments, env) == -1)
 		{
 			perror("Error");
