@@ -198,16 +198,16 @@ char *_strtok(char str[], const char *delim)
 char *_find_command(char *cmd)
 {
 	char *path, *selected_path, *command_dir;
-	int path_length, command_length, i;
+	int path_length, command_length;
 	struct stat file_stats;
 
 	path = _getenv("PATH");
+	printf("path: %s", path);
 
 	if (path)
 	{
 		command_length = _strlen(cmd);
 		selected_path = _strtok(path, ":");
-		i = 0;
 		while (selected_path != NULL)
 		{
 			printf("selected_path: %s", selected_path);
